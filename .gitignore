@@ -1,0 +1,6 @@
+﻿# Windows / PowerShell
+*.ps1xml
+*.ps1
+*.evtx
+*.log
+Thumbs.db
