@@ -4,3 +4,11 @@
 *.evtx
 *.log
 Thumbs.db
+
+# Ignore heavy or sensitive lab files
+*.pcap
+*.pcapng
+*.log
+*.tgz
+*.key
+.ssh/
