@@ -1,37 +1,63 @@
-# Blue & Red Cyber Lab
-Red & Blue Lab – Cybersecurity Training Environment
+# Red & Blue Lab – Cybersecurity Training Environment
 
-This repository documents the setup, configuration, and exercises of a custom-built Red & Blue Team lab designed for hands-on cybersecurity practice.
+A fully virtualized cybersecurity lab designed and maintained by **Baruch Galila**, built to simulate real-world attack and defense operations.
+This environment serves as a practical platform for continuous learning, experimentation, and portfolio development.
 
-Overview
+## 1. Architecture Overview
+The lab consists of multiple virtual machines configured under VMware Workstation Pro:
 
-The lab consists of multiple virtual machines:
+| Role | Operating System | Purpose |
+|------|------------------|---------|
+| **Attacker** | Kali Linux | Offensive security, exploitation, network scanning |
+| **Victim Workstation** | Windows 10 | Simulated corporate endpoint for phishing, lateral movement, and incident analysis |
+| **Domain Controller** | Windows Server | Active Directory, DNS, DHCP, Group Policy, event logging |
+| **Host Machine** | Windows 11 | Management layer, Git synchronization, data backup |
 
-	•	Kali Linux – used for offensive testing and red team operations
-	
-	•	Windows 10 Client – simulates an end-user workstation
-	
-	•	Windows Server (Domain Controller) – provides authentication, DNS, and logging for blue team analysis
+The environment operates in both **NAT mode** (for Internet access and updates) and **Host-Only/Isolated mode** (for internal red–blue simulations).
 
-All machines are networked in both isolated (internal) and NAT modes for flexible experimentation.
+## 2. Objectives
+- Recreate realistic enterprise network conditions
+- Practice Tier 1–2 SOC analysis and incident response
+- Understand attack chains through hands-on Red Team exercises
+- Strengthen forensic and troubleshooting skills
+- Document experiments with repeatable, evidence-based methodology
 
-Folder Structure
+## 3. Directory Structure
 
-	•	/docs – technical documentation and setup guides
-	
-	•	/detections – blue team detection rules and incident response notes
-	
-	•	/playbooks – attack & defense playbooks
-	
-	•	/VMShared – shared folder between host and guest for synchronized work
+| Directory | Description |
+|----------|-------------|
+| `/docs` | Technical documentation, lab design notes, configurations |
+| `/detections` | Blue Team detection rules, SIEM queries, incident notes |
+| `/playbooks` | Attack and defense playbooks (MITRE ATT&CK) |
+| `/VMShared` | Shared host–guest folder for logs, scripts, and exports |
+| `/pcaps` | Network captures for packet analysis and detection engineering |
 
-Goals
+## 4. Current Capabilities
+- Active Directory integration (users, GPOs, DNS)
+- Sysmon configured for enriched logging
+- Windows Event Forwarding (WEF) pipeline tested
+- Kali toolset: Nmap, Metasploit, Burp Suite, Nikto, Hydra, etc.
+- Network isolation for safe attack–defense simulations
+- Snapshot and backup routines via VMware CLI
 
-	•	Build real-world troubleshooting and detection skills
-	
-	•	Simulate red/blue attack-defense scenarios
-	
-	•	Practice SOC/Tier 1–2 workflows in a virtualized, controlled lab
+## 5. Next Steps
+- Centralized log analysis with ELK / Wazuh
+- Suricata IDS and network alerting
+- Malware detonation sandbox
+- Incident Response playbooks and timelines
+- Automated reporting and backups
 
+## 6. Version Control and Workflow
+Work is synchronized via:
+1. Kali → `/mnt/hgfs/VMShared` (shared folder)
+2. Host (Windows) → GitHub repository: https://github.com/BaruchGalila/RedBlueLab
 
-Maintained by Baruch Galila
+This ensures each change is traceable, reproducible, and backed up.
+
+## 7. Maintenance Notes
+- Snapshots before major lab changes
+- Backups and docs under `/VMShared`
+- Regular updates via `apt` and Windows Update
+
+**Maintained by:** [Baruch Galila](https://github.com/BaruchGalila)  
+**Last Updated:** November 2025
